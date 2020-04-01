@@ -4,11 +4,20 @@ import 'dart:math' as math;
 
 void main() => runApp(MyApp());
 
+const _duration = Duration(milliseconds: 500);
+
 class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp>  {
+  
+  Color color;
+
+  @override
+  void initState() {
+    super.initState();
+  }
   
   int index = 0;
 
@@ -22,11 +31,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-        body: Center(
+        body: AnimatedContainer (
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
+          ),
+          duration: _duration,
           child: RaisedButton(
-          onPressed: () => changeIndex(),
-          child: Text('Click'),
+            onPressed: () => changeIndex(),
+            child: Text('Click'),
           )
         )
       )
